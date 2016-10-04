@@ -2,6 +2,7 @@ from django.conf.urls import url
 
 from . import views
 
+app_name = 'compare' #assigns namespace compare to app_name
 urlpatterns = [
 	#ex: /polls/
     url(r'^$', views.index, name='index'),
