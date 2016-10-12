@@ -1,0 +1,9 @@
+{% if latest_searches %}
+    <ul>
+    {% for target in latest_searches %}
+        <li>{{ target.target_name }}</li> {# detail here is defined in search/urls.py #}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No searches have been performed.</p>
+{% endif %}

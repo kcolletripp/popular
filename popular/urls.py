@@ -8,4 +8,5 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^compare/', include('compare.urls')),
+    url(r'^search/', include('search.urls')),
 ]
