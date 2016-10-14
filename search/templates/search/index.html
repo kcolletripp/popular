@@ -1,3 +1,15 @@
+<h1>Is it popular?</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'search:result' target.id %}" method="post">
+{% csrf_token %}
+{{ form }}
+<input type="submit" value="Check!" />
+</form>
+
+<h1>Here are the last 5 searches</h1>
+
 {% if latest_searches %}
     <ul>
     {% for target in latest_searches %}
@@ -7,3 +19,5 @@
 {% else %}
     <p>No searches have been performed.</p>
 {% endif %}
+
+

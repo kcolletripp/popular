@@ -3,12 +3,34 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 from .models import Target, TargetWiki
 
+from .forms import TargetForm
+
 # Create your views here.
 
-class IndexView(generic.ListView):
-    template_name = 'search/index.html'
-    context_object_name = 'latest_searches'
+#class IndexView(generic.ListView):
+#    template_name = 'search/index.html'
+#    context_object_name = 'latest_searches'
+#
+#    def get_queryset(self):
+#        #Return the last 5 published questions. (not including future releases)
+#        return Target.objects.all().order_by('-target_name')[:5]
 
-    def get_queryset(self):
-        #Return the last 5 published questions. (not including future releases)
-        return Target.objects.all().order_by('-target_name')[:5]
+#class ResultsView(generic.DetailView):
+#    model = Target
+#    template_name = 'search/result.html'
+
+def index(request):
+    latest_searches = Target.objects.all().order_by('-target_name')[:5]
+    form = TargetForm()
+    context = {'latest_searches': latest_searches, 'form':form} #dictionary
+    return render(request, 'search/index.html', context)
+
+
+def result(request, target_id):
+    if request.method == 'POST':
+        form = TargetForm(request.POST)
+    else:
+        #GET, or first time request
+        form = TargetForm()
+    context = {'form': form}
+    return render(request, 'search/result.html', context)
