@@ -26,11 +26,14 @@ def index(request):
     return render(request, 'search/index.html', context)
 
 
-def result(request, target_id):
+def result(request):
+    context = {}
     if request.method == 'POST':
         form = TargetForm(request.POST)
+        target = form.save()
+        context['target'] = target #'key':value
     else:
         #GET, or first time request
         form = TargetForm()
-    context = {'form': form}
+    context['form'] = form
     return render(request, 'search/result.html', context)
