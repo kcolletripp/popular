@@ -1,16 +1,16 @@
 from django.contrib import admin
 
-from .models import Target, TargetWiki
+from .models import Target
 
-class TargetWikiInline(admin.TabularInline):
-    model = TargetWiki
-    extra = 1
+#class TargetWikiInline(admin.TabularInline):
+#    model = TargetWiki
+#    extra = 1
 
 class TargetAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,              {'fields': ['target_name']}),
+        (None,  {'fields': ['target_name', 'wiki_views']}),
+        
     ]
-    inlines = [TargetWikiInline]
     search_fields = ['target_name']
 
 

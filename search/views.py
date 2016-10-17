@@ -1,9 +1,9 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
-from .models import Target, TargetWiki
-
+from .models import Target
 from .forms import TargetForm
+import utils
 
 # Create your views here.
 
@@ -32,6 +32,7 @@ def result(request):
         form = TargetForm(request.POST)
         target = form.save()
         context['target'] = target #'key':value
+        context['views'] = utils.get_wiki(target)
     else:
         #GET, or first time request
         form = TargetForm()
