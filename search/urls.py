@@ -6,6 +6,6 @@ app_name = 'search' #assigns namespace compare to app_name
 urlpatterns = [
 	#ex: /search/
     url(r'^$', views.index, name='index'),
-    #ex: /polls/5/result/
+    #ex: /search/5/result/
     url(r'^result/$', views.result, name='result'),
 ]

@@ -1,5 +1,6 @@
 import urllib2
 import json
+import datetime
 from .models import Target
 #from bs4 import BeautifulSoup
 
@@ -15,6 +16,6 @@ def get_wiki(target):
     for item in data['items']:
         #print(item['views'])
         total_views += item['views']
-		target.wiki_views = total_views
-		target.save()
+        target.wiki_views = total_views
+        target.save()
     return total_views
